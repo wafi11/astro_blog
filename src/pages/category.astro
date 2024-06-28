@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import Content3 from "../components/Content3";
+import ContentMid from "../components/ContentMid";
+import Layouts from "../layouts/Layouts.astro";
+import { postCategory, postCountry } from "./actions/post.astro";
+import { getImageForArticle } from "../components/Images.astro";
+import CountryFlags from '../components/slider_cat.astro'
+import type { Propsing } from "../components/types";
+
+
+
+const search = Astro.url.searchParams.get('cat') || 'entertainment';
+const country = Astro.url.searchParams.get('country') || 'id';
+
+const data: Propsing = await postCategory(search);
+const datas: Propsing = await postCountry(country);
+
+---
+
+<Layouts title="Category Page">
+    <div class="pt-[90px] grid grid-cols-5 gap-4 px-10 h-full ">
+        <div class="col-span-4 flex flex-col  font-bebas gap-10   mt-10">
+                        <h1 class="text-[60px] font-bold mb-2">{data.articles[0].title}</h1>
+                        <div class="flex justify-between">
+                            <p class="text-gray-500 text-sm">{new Date(data.articles[0].publishedAt).toLocaleDateString()}</p>
+                            <p class="text-gray-600 text-md ">Author : {data.articles[0].author}</p>
+                        </div>
+                        <a href={data.articles[0].url} class="text-blue-500 hover:underline mt-10 block">
+                        <img src={getImageForArticle(search, 0)} alt={search} class="w-full h-full object-cover " />
+                        </a>
+        </div>
+        <div class="col-span-1 space-y-4 font-bebas mt-10 ">
+            <h1 class="text-white bg-black w-fit px-4 text-3xl">Other News</h1>
+            {
+                data.articles.slice(2,4).map((item, index) => (
+                    <div class="text-black  bg-white shadow-md rounded-md px-2">
+                        <img src={getImageForArticle(search, index + 1)} alt={search} class="w-full h-48 object-cover rounded-t-md" />
+                        <h1 class="text-xl font-bold mb-2">{item.title}</h1>
+                        <p class="text-gray-600">{item.author}</p>
+                        <p class="text-gray-500 text-sm">{new Date(item.publishedAt).toLocaleDateString()}</p>
+                        <a href={item.url} class="text-blue-500 hover:underline mt-2 block">Read more</a>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+    <div class="px-10 py-5 bebas tracking-wider">
+        <CountryFlags />
+        <div class="grid grid-cols-4 gap-4 w-full py-4 h-full">
+            {
+                datas.articles.map((item) => (
+                    <div class="w-full border-2  border-gray-400 shadow-md  p-2">
+                        <a href={item.url} class="bebas font-bold tracking-wide text-md">
+                 {item.title}
+                    </a>
+                </div>
+            ))
+        }
+        </div>
+    </div>
+</Layouts>

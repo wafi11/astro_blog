@@ -1,0 +1,63 @@
+---
+import prisma from '../../lib/db'
+export async function Getdata ()  {
+    try {
+        const data = await prisma.blog.findMany({
+            orderBy : {
+                createdAt : 'desc'
+            }
+        })
+        return data
+    }catch{
+        throw new Error('Internal Server Error')
+    }
+}
+
+
+export async function GetDataTrending (){
+    const api_key = import.meta.env.API_KEY
+    try {
+        const data = await fetch(`https://newsapi.org/v2/everything?q=a&from=2024-06-24&to=2024-06-24&sortBy=popularity&apiKey=${api_key}`)
+        const response = await data.json()
+        return response
+    }catch {
+        throw new Error('Internal Server Error')
+    }
+}
+export async function GetDataByCountry (){
+    const api_key = import.meta.env.API_KEY
+    try {
+        const data = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${api_key}`)
+        const response = await data.json()
+        return response
+    }catch {
+        throw new Error('Internal Server Error')
+    }
+}
+
+export async function getByCategory() {
+    const api_key = import.meta.env.API_KEY
+    try {
+        const data = await fetch(`https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${api_key}`)
+        const response = await data.json()
+        return response
+    }catch {
+        throw new Error('Internal Server Error')
+
+    }
+}
+
+export async function getTrending() {
+    const api_key = import.meta.env.API_KEY
+    try {
+        const data = await fetch(`https://newsapi.org/v2/everything?q=apple&from=2024-06-24&to=2024-06-24&sortBy=popularity&apiKey=${api_key}`)
+        const response = await data.json()
+        return response
+    }catch {
+        throw new Error('Internal Server Error')
+
+    }
+}
+
+
+---

@@ -1,0 +1,51 @@
+---
+export async function postCategory(type : string){
+    const types = 'entertainment'
+    const api_key = import.meta.env.API_KEY
+    try {
+        const data = await fetch(`https://newsapi.org/v2/top-headlines?category=${type}&apiKey=${api_key}`)
+        const response = await data.json()
+        return response
+    }catch (e){
+        console.log(e)
+        throw new Error('internal Server Erorr')
+    }
+}
+export async function postCountry(type : string){
+    const types = 'id'
+    const api_key = import.meta.env.API_KEY
+    try {
+        const data = await fetch(`https://newsapi.org/v2/top-headlines?country=${type}&apiKey=${api_key}`)
+        const response = await data.json()
+        return response
+    }catch (e){
+        console.log(e)
+        throw new Error('internal Server Erorr')
+    }
+}
+export async function getEverithing(type : string){
+    const api_key = import.meta.env.API_KEY
+    try {
+        const data = await fetch(`https://newsapi.org/v2/everything?q=${type}&apiKey=${api_key}`)
+        const response = await data.json()
+        return response
+    }catch (e){
+        console.log(e)
+        throw new Error('internal Server Erorr')
+    }
+}
+export async function getTopHeadlines(type : string){
+    const api_key = import.meta.env.API_KEY
+    try {
+        const data = await fetch(`https://newsapi.org/v2/top-headlines/sources?category=${type}&apiKey=${api_key}`)
+        const response = await data.json()
+        return response
+    }catch (e){
+        console.log(e)
+        throw new Error('internal Server Erorr')
+    }
+}
+
+
+
+---

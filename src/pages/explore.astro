@@ -1,0 +1,26 @@
+---
+import { Image } from "astro:assets";
+import type { Data } from "../components/types";
+import Layouts from "../layouts/Layouts.astro";
+import Category from "../components/category"
+import { getEverithing } from "./actions/post.astro";
+
+const search = Astro.url.searchParams.get('query') || 'apple';
+const data = await getEverithing(search)
+
+import Banner from '../components/Banner'
+import Content4 from "../components/Content4";
+import Content3 from "../components/Content3";
+---
+
+
+<Layouts title={'Astro Blogs'}>
+   <Banner data={data} client:load/>
+   <Category client:load/>
+   <div class="px-10">
+      <Content3 data={data} title={search}>
+    </div>
+   <div class="px-10 pt-[200px]">
+      <Content4 data={data} title={search}/>
+    </div>
+</Layouts>

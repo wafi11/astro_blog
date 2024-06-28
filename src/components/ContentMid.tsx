@@ -1,0 +1,50 @@
+import { Image } from "astro:assets";
+import React, { Fragment } from "react";
+import type { Data } from "./types";
+
+
+
+const ContentMid = ({ data }: Data) => {
+  const filteredArticles = data.articles.filter((item) => {
+    return item.author && item.content && item.description && item.publishedAt && item.title && item.url && item.urlToImage;
+  });
+  const images = "https://images.unsplash.com/photo-1612550761236-e813928f7271?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YnVzc2luZXNzfGVufDB8fDB8fHww"
+  const slicesData = filteredArticles.slice(0,4)
+
+  return (
+    <Fragment>
+    <div className="col-span-3 grid grid-cols-2  h-auto gap-5  w-full">
+      {slicesData.map((item, index) => (
+        <div key={index} className=" border p-2 mt-2 w-full flex flex-col gap-3 shadow-md">
+          <img src={item.urlToImage || images} alt={item.title} className="w-full h-32 object-cover" />
+          <h2 className="text-xl font-bold bebas ">{item.title}</h2>
+          <p className="text-gray-500">{item.description}</p>
+          <p className="text-sm text-gray-400">By {item.author} on {new Date(item.publishedAt).toLocaleDateString()}</p>
+          <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+            Read more
+          </a>
+        </div>
+      ))}
+    </div>
+      <div className="col-span-2 w-full relative bebas px-8">
+            <div className="bg-black absolute top-0 w-[430px] h-[2px]"></div>
+            <h3 className="text-4xl py-2  w-full">Most Popular</h3>
+            <div className="bg-black absolute top-12 w-[430px] h-[2px]"></div>
+            {filteredArticles.slice(4,8).map((item, idx) => (
+                <div key={idx} className="p-4 mt-4 flex gap-4">
+                    <img src={item.urlToImage || images} alt={item.title} className="w-20 h-20 object-cover" />
+                    <div className="flex-col flex">
+                    <h2 className="text-xl font-medium">{item.title}</h2>
+                    <p className="text-sm text-gray-400 tracking-wider">By {item.author} | {new Date(item.publishedAt).toLocaleDateString()}</p>
+                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                    Read more
+                    </a>
+                    </div>
+                </div>
+        ))}
+      </div>
+      </Fragment>
+  );
+};
+
+export default ContentMid;
