@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Layouts from "../layouts/Layouts.astro";
-import { GetDataTrending, Getdata, getByCategory, getTrending } from "./actions/get.astro";
+import { GetDataTrending, getByCategory, getTrending, getUserFromToken } from "./actions/get.astro";
 import ContentMid from "../components/ContentMid"
 import Content3 from "../components/Content3";
 import Content4 from "../components/Content4";
@@ -14,11 +14,9 @@ const Trending = await getTrending()
 ---
 <Layouts title="Home Page">
       <Content1 data={data}  title={"Home Page"}/>
-    <div class="grid grid-cols-5 gap-5 px-10 ">
-      <ContentMid data={populer}/>
-    </div>
+      <ContentMid data={populer} />  
     <div class="px-10">
-      <Content3 data={hotNews} title="Hot News">
+      <Content3 data={hotNews} title="Hot News" client:load>
     </div>
     <div class="px-10 pt-[200px]">
       <Content4 data={Trending}/>

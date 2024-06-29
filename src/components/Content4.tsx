@@ -7,13 +7,13 @@ const Content4 = ({ data,title }: Data) => {
     ));
 
     return (
-        <div className='border-t-[2px] border-black w-full h-full pb-[150px]'>
+        <div className='border-t-[2px] border-black w-full h-fit pb-[150px]'>
             <div className='bebas font-bold flex mb-5'>
                 <h1 className='bg-black text-white w-fit tracking-wider px-4'>{title}</h1>
                 <h1 className='text-black tracking-wider px-4'>TOP STORIES IN THE LAST 48 HOURS</h1>
             </div>
 
-            <div className='grid grid-cols-4 gap-4 text-black bebas max-h-[400px]'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-black bebas md:max-h-[400px]'>
                 {filteredArticles.slice(0,4).map((item, idx) => (
                     <div key={idx} className='gap-5 flex flex-col'>
                         <img src={item.urlToImage} alt="/" className='w-full h-[200px] object-cover' />

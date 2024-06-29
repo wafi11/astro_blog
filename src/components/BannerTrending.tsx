@@ -40,7 +40,7 @@ const BannerTrending = ({ data }: Props) => {
 
   return (
     <div className="pt-[70px] grid grid-cols-5 h-screen w-full relative">
-      <div className="col-span-2 bg-neutral-900 flex flex-col justify-center items-center px-4 gap-10">
+      <div className="col-span-5 md:col-span-2 bg-neutral-900 flex flex-col justify-center items-center px-4 gap-10">
         <div className="space-y-4">
           <p className="text-gray-200 text-md text-left font-blog font-bold flex gap-2 items-center">
             {datas.name}
@@ -66,7 +66,7 @@ const BannerTrending = ({ data }: Props) => {
             </button>
         </div>
       </div>
-      <div className="col-span-3 w-full h-full">
+      <div className="col-span-3 md:block hidden w-full h-full">
         <img
           src={getImageForArticle(datas.category, index)}
           alt={datas.name}

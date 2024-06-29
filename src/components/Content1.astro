@@ -8,8 +8,8 @@ const filteredArticles = data.articles.filter((item) => {
 
 ---
 
-<div class="grid grid-cols-5 gap-5 px-10  h-full pt-[50px]">
-  <div class="col-span-3 h-fit w-full border-b-[1px] border-black pb-6">
+<div class="grid  grid-cols-1 md:grid-cols-5 gap-5 px-10  h-full pt-[70px]">
+  <div class="col-span-1 md:col-span-3  h-fit w-full border-b-[1px] border-black pb-6">
     <img alt={filteredArticles[0].urlToImage} src={filteredArticles[0].urlToImage} width={1000} height={1000} class="object-cover h-[480px] w-full"/>
     <div class="flex flex-col justify-center gap-5">
         <div class="flex justify-center gap-10 pt-4  blog relative">
@@ -32,14 +32,13 @@ const filteredArticles = data.articles.filter((item) => {
       </button>
     </div>
   </div>
-  <div class="col-span-2 h-fit w-full ">
+  <div class="col-span-1 md:col-span-2 h-fit w-full ">
     <div class="my-5 pt-5">
       <h1 class="text-2xl bebas font-semibold bg-black text-white w-fit p-2 ">
         Other Post
       </h1>
     </div>
     <img alt={filteredArticles[4].urlToImage} src={filteredArticles[1].urlToImage} width={1000} height={1000} class="object-cover h-[200px] w-full"/>
-      <h1 class="text-4xl text-center blog py-5">{filteredArticles[1].title}</h1>
+      <h1 class="text-4xl  blog py-5 w-full text-start">{filteredArticles[1].title}</h1>
       <p class="text-md "> {filteredArticles[1].description}</p>
-
   </div>

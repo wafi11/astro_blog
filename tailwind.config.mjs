@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+import profiles from '../astroblog/src/assets/placeholder.jpg'
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
@@ -20,6 +21,9 @@ export default {
 				"accent" : "#FFDE95",
 				"secondary" : "#ADD899",
 				"pudar" : "#F6E6CB"
+			},
+			backgroundImage : {
+				'profile-image': `url(https://github.com/wafi11/TapakSuciV3/blob/main/public/placeholder.jpg?raw=true)`
 			}
 		},
 	},

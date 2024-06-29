@@ -12,10 +12,10 @@ const ContentMid = ({ data }: Data) => {
   const slicesData = filteredArticles.slice(0,4)
 
   return (
-    <Fragment>
-    <div className="col-span-3 grid grid-cols-2  h-auto gap-5  w-full">
+<section className="sm:grid-cols-1 md:grid-cols-3 grid lg:grid-cols-5 gap-5 px-10 ">
+      <div className="col-span-3 grid grid-cols-1 md:grid-cols-2  h-auto gap-5 pb-[50px] w-full ">
       {slicesData.map((item, index) => (
-        <div key={index} className=" border p-2 mt-2 w-full flex flex-col gap-3 shadow-md">
+        <div key={index} className=" border p-2 mt-2 w-full flex flex-col gap-3 shadow-md rounded-2xl ">
           <img src={item.urlToImage || images} alt={item.title} className="w-full h-32 object-cover" />
           <h2 className="text-xl font-bold bebas ">{item.title}</h2>
           <p className="text-gray-500">{item.description}</p>
@@ -26,10 +26,8 @@ const ContentMid = ({ data }: Data) => {
         </div>
       ))}
     </div>
-      <div className="col-span-2 w-full relative bebas px-8">
-            <div className="bg-black absolute top-0 w-[430px] h-[2px]"></div>
-            <h3 className="text-4xl py-2  w-full">Most Popular</h3>
-            <div className="bg-black absolute top-12 w-[430px] h-[2px]"></div>
+      <div className="col-span-3 md:col-span-2 w-full relative bebas px-0 lg:px-8">
+            <h3 className="text-4xl py-2 border-y-2 border-black w-full">Most Popular</h3>
             {filteredArticles.slice(4,8).map((item, idx) => (
                 <div key={idx} className="p-4 mt-4 flex gap-4">
                     <img src={item.urlToImage || images} alt={item.title} className="w-20 h-20 object-cover" />
@@ -43,7 +41,7 @@ const ContentMid = ({ data }: Data) => {
                 </div>
         ))}
       </div>
-      </Fragment>
+      </section>
   );
 };
 
