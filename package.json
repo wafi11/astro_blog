@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build --remote",
+    "postinstall": "prisma generate",
+    "build": "astro check && astro build && npx prisma generate",
     "preview": "astro preview",
     "astro": "astro"
   },
