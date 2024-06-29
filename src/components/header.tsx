@@ -22,7 +22,6 @@ const data = [
   { nama: "Explore", link: "/explore" },
   { nama: "Trending", link: "/trending" },
   { nama: "Popular", link: "/popular" },
-  { nama: "About", link: "/about" },
 ];
 
 const Headers = () => {
