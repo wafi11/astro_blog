@@ -1,24 +1,45 @@
 ---
+import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import Layouts from "../layouts/Layouts.astro";
-import { GetDataTrending, getByCategory, getTrending, getUserFromToken } from "./actions/get.astro";
+import {  GetDataTrending, getByCategory, getTrending, getUserFromToken } from "./actions/get.astro";
 import ContentMid from "../components/ContentMid"
 import Content3 from "../components/Content3";
 import Content4 from "../components/Content4";
+import {User} from "./test.astro"
 import Content1 from "../components/Content1.astro";
-const data = await GetDataTrending()
-const populer = await GetDataTrending()
+import { BlogsData } from "./actions/get";
+const data = await BlogsData()
+const userCookie = !!Astro.cookies.get('token')
+// const populer = await GetDataTrending()
 const hotNews = await getByCategory()
-const Trending = await getTrending()
+// const Trending = await getTrending()
+console.log(hotNews)
 
 ---
-<Layouts title="Home Page">
-      <Content1 data={data}  title={"Home Page"}/>
-      <ContentMid data={populer} />  
-    <div class="px-10">
+<Layouts title="Home Page"    titles={"Home"}>
+      <Content1 data={data} title="Data"  title={"Home Page"}/>
+      <!-- <ContentMid data={populer} />   -->
+    <!-- <section class="px-10">
       <Content3 data={hotNews} title="Hot News" client:load>
-    </div>
-    <div class="px-10 pt-[200px]">
-      <Content4 data={Trending}/>
-    </div>
+    </section>
+    <section class="px-10 pt-[200px]">
+      <Content4 data={Trending} title="Trending"/>
+    </section> -->
 </Layouts>
+
+
+<!-- <script>
+  const getCookies = () =>
+  document.cookie.split(";")
+    .map(str => str.trim().split(/=(.+)/))
+    .reduce((acc, curr) => {
+        acc[curr[0]] = curr[1];
+        return acc;
+    }, {})
+
+const userAcceptsCookies = !!getCookies()['token']
+console.log(userAcceptsCookies)
+</script> -->
+
+

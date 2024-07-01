@@ -15,8 +15,8 @@ const ContentMid = ({ data }: Data) => {
 <section className="sm:grid-cols-1 md:grid-cols-3 grid lg:grid-cols-5 gap-5 px-10 ">
       <div className="col-span-3 grid grid-cols-1 md:grid-cols-2  h-auto gap-5 pb-[50px] w-full ">
       {slicesData.map((item, index) => (
-        <div key={index} className=" border p-2 mt-2 w-full flex flex-col gap-3 shadow-md rounded-2xl ">
-          <img src={item.urlToImage || images} alt={item.title} className="w-full h-32 object-cover" />
+        <div key={index} className=" border p-2 mt-2 w-full flex flex-col gap-3 shadow-md rounded-[24px] ">
+          <img src={item.urlToImage || images} alt={item.title} className="w-full h-32 object-cover rounded-[16px] p-1" />
           <h2 className="text-xl font-bold bebas ">{item.title}</h2>
           <p className="text-gray-500">{item.description}</p>
           <p className="text-sm text-gray-400">By {item.author} on {new Date(item.publishedAt).toLocaleDateString()}</p>

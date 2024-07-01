@@ -9,7 +9,9 @@ import db from "@astrojs/db";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react(), mdx(), sitemap(), auth(), db()],
+  integrations: [tailwind(), react(), mdx(), sitemap({
+    
+  }), auth(), db()],
   output: 'server',
   adapter: vercel(),
   experimental: {

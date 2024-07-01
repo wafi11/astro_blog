@@ -1,17 +1,16 @@
 ---
-const { title } = Astro.props;
+import type { GetStaticPaths } from "astro";
 import Footer from "../components/Footer";
 import Headers from "../components/header"
-import profile from '../assets/img1.avif'
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+import { GetDataTrending } from "../pages/actions/get.astro";
+import type { Data } from "../components/types";
+import BaseHead from "../components/BaseHead.astro";
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={title} />
-    <title>{title}</title>
+    <BaseHead title={title}  description={description}/>
 </head>
 <body >
     <Headers client:load/>

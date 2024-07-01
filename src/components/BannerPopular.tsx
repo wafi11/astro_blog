@@ -8,24 +8,25 @@ const BannerPopular = ({ data }: Data) => {
     });
 
     return (
-        <section className="pt-[70px] bg-white h-fit w-full text-[#2D2D2D] overflow-hidden py-5">
-            <div className="p-10 grid grid-cols-6 gap-4 ">
+        <section className="mb-[50px] bg-[#EEEDEB] h-screen  w-full text-[#2D2D2D] overflow-hidden ">
+            <div className="px-10 py-5 grid grid-cols-6 gap-4 items-center h-full">
                 <motion.div 
-                    className='col-span-3 w-full flex flex-col gap-5 font-bebas'
+                    className='col-span-3 w-full flex flex-col gap-5 font-bebas '
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <h3 className='font-bold text-xl '>{filteredArticles[0].author}</h3>
+                    <h3 className='font-blog text-xl '>{filteredArticles[0].author}</h3>
                     <p className='font-bold text-3xl '>{filteredArticles[0].title}</p>
                     <motion.img 
                         src={filteredArticles[0].urlToImage} 
                         alt="/" 
-                        className='w-full h-[300px] object-cover'
+                        className='w-full h-[400px] object-cover'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5, duration: 0.5 }}
                     />
+                    <p className='font-bold text-2xl '>{filteredArticles[0].description}</p>
                 </motion.div>
                 <div className='grid gap-2 col-span-3 items-center'>
                     <motion.h1 

@@ -31,10 +31,6 @@ const Headers = () => {
   const [showing, setShowing] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-   const handleClicks = () => {
-    setMb(prev => !prev) 
-   }
-
   const handleClick = () => {
     setShowing((prev) => !prev);
   };
@@ -108,7 +104,7 @@ const Headers = () => {
           {data.map((item) => (
             <motion.div
               key={item.link}
-              className="relative  text-md p-1 text-center w-fit px-4 bebas hidden md:block"
+              className="relative  text-2xl   p-1 text-center w-fit px-4 bebas hidden md:block"
               whileHover={{ background: "#BBE9FF" }}
               transition={{ duration: 0.2 }}
               variants={itemVariants}

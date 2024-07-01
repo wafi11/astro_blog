@@ -35,7 +35,6 @@ model Account {
   scope             String?
   id_token          String? @db.String
   session_state     String?
-
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
@@ -57,13 +56,31 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
+
+model Blog {
+  id         String      @id @default(auto()) @map("_id") @db.ObjectId
+  title      String
+  image      String?
+  url        String
+  author     String
+  description String
+  category   String[]
+  Comments  Comments[]
+  likes   Likes[]
+  createdAt  DateTime @default(now())
+}
+
+
 model Likes {
   id         String      @id @default(auto()) @map("_id") @db.ObjectId
   likes      Int
   userId     String      @db.ObjectId
+  blogId    String       @db.ObjectId
   commentId  String      @db.ObjectId
   user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   comment    Comments    @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  blog    Blog    @relation(fields: [blogId], references: [id], onDelete: Cascade)
+  @@unique([blogId,commentId])
 }
 
 model Comments {
@@ -71,8 +88,10 @@ model Comments {
   text      String
   userId    String      @db.ObjectId           
   user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  blogName  String      @db.ObjectId
+  blogId    String      @db.ObjectId  
+  blog      Blog        @relation(fields: [blogId], references: [id], onDelete: Cascade)
   likes     Likes[]
   createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt  
+  updatedAt DateTime    @updatedAt
+  @@unique([blogId])
 }
