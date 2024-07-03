@@ -4,17 +4,19 @@ import { FaMinus, FaPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const SliderImages = ({ data }: Data) => {
-  console.log(data);
-  const filteredArticles = data.articles.filter((item) => {
+  const filteredArticles = data.filter((item) => {
     return (
       item.author &&
       item.description &&
-      item.publishedAt &&
+      item.createdAt &&
       item.title &&
       item.url &&
-      item.urlToImage
+      item.image
     );
   });
+
+
+  console.log(filteredArticles)
 
   const [expandedIndex, setExpandedIndex] = useState(0);
 
@@ -23,10 +25,10 @@ const SliderImages = ({ data }: Data) => {
   };
 
   return (
-    <section className="h-screen text-white flex flex-col rounded-2xl my-[100px] container relative overflow-hidden">
+    <section className="h-[600px] text-white flex flex-col rounded-2xl my-[100px] container relative overflow-hidden">
       <div className="relative h-full w-full overflow-hidden rounded-xl bg-cover">
         <img
-          src={filteredArticles[expandedIndex].urlToImage}
+          src={filteredArticles[expandedIndex].image}
           alt={filteredArticles[0].title}
           className="h-full w-full object-cover"
         />

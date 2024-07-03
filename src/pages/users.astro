@@ -8,7 +8,7 @@ import Layouts from "../layouts/Layouts.astro";
         <div class="flex justify-center items-center bg-gray-300 rounded-l-2xl">
             <Image src="/images.avif" alt="/" height={200} width={200} class="w-full h-[400px] rounded-3xl" />
         </div>
-        <form id="signin-form" class="bg-gray-300 p-8 w-full flex flex-col justify-center items-center h-[400px]">
+        <form action="/api/login" method="post" class="bg-gray-300 p-8 w-full flex flex-col justify-center items-center h-[400px]">
             <div class="w-full mb-4">
                 <label for="email" class="block text-black mb-2">Email:</label>
                 <input type="email" id="email" name="email" required class="w-full px-3 py-2 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500" />
@@ -22,26 +22,4 @@ import Layouts from "../layouts/Layouts.astro";
         </form>
     </section>
     
-
-    <script is:inline type="module">
-        document.getElementById('signin-form').addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-            });
-            const data = await response.json();
-            if (response.ok) {
-                document.cookie = `token=${data.token}; Path=/; Max-Age=${60 * 60}; SameSite=Strict;`;
-                window.location.href = data.redirect;
-            } else {
-                document.getElementById('error-message').textContent = data.error;
-            }
-        });
-    </script>
 </Layouts>

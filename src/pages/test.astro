@@ -2,6 +2,7 @@
 import { lucia } from "../lib/auth";
 import jwt, { type JwtPayload } from 'jsonwebtoken';
 import prisma from "../lib/db"
+import Button from "../components/utils/Button.astro";
 
 
 export const User = async(token : string) => {
@@ -48,3 +49,6 @@ export const User = async(token : string) => {
 ---
 
 
+
+
+<Button />

@@ -2,8 +2,8 @@ import React from 'react';
 import type { Data } from './types';
 
 const Content4 = ({ data,title }: Data) => {
-    const filteredArticles = data.articles.filter((item) => (
-        item.author && item.content && item.description && item.publishedAt && item.title && item.url && item.urlToImage
+    const filteredArticles = data.filter((item) => (
+        item.author  && item.description && item.createdAt && item.title && item.url && item.image
     ));
 
     return (
@@ -16,12 +16,12 @@ const Content4 = ({ data,title }: Data) => {
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-black bebas md:max-h-[400px]'>
                 {filteredArticles.slice(0,4).map((item, idx) => (
                     <div key={idx} className='gap-5 flex flex-col'>
-                        <img src={item.urlToImage} alt="/" className='w-full h-[200px] object-cover' />
+                        <img src={item.image} alt="/" className='w-full h-[200px] object-cover' />
                         <h1 className=''>{item.author}</h1>
                         <div className=' items-center gap-4 grid'>
                                 <h2 className='text-xl font-semibold '>{item.title}</h2>
                                 <p className='text-sm bebas'>{item.description}</p>
-                                <p className='text-sm text-gray-300'>{new Date(item.publishedAt).toLocaleDateString()}</p>
+                                <p className='text-sm text-gray-300'>{new Date(item.createdAt).toLocaleDateString()}</p>
                                 <a href={item.url} target='_blank' rel='noopener noreferrer' className='text-blue-400 hover:underline text-sm'>Read more</a>
                         </div>
                     </div>

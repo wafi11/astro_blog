@@ -2,44 +2,28 @@
 import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import Layouts from "../layouts/Layouts.astro";
-import {  GetDataTrending, getByCategory, getTrending, getUserFromToken } from "./actions/get.astro";
-import ContentMid from "../components/ContentMid"
-import Content3 from "../components/Content3";
-import Content4 from "../components/Content4";
-import {User} from "./test.astro"
-import Content1 from "../components/Content1.astro";
-import { BlogsData } from "./actions/get";
+import ContentMid from "../components/content/ContentMid"
+import Content3 from "../components/content/Content3";
+import Content4 from "../components/content/Content4";
+import Content1 from "../components/content/Content1.astro";
+import { BlogsData,Popular,Trending } from "../actions/get";
 const data = await BlogsData()
-const userCookie = !!Astro.cookies.get('token')
-// const populer = await GetDataTrending()
-const hotNews = await getByCategory()
-// const Trending = await getTrending()
-console.log(hotNews)
-
+const populer = await Popular()
+const Trendings = await Trending()
 ---
+
+
 <Layouts title="Home Page"    titles={"Home"}>
       <Content1 data={data} title="Data"  title={"Home Page"}/>
-      <!-- <ContentMid data={populer} />   -->
-    <!-- <section class="px-10">
-      <Content3 data={hotNews} title="Hot News" client:load>
+      <ContentMid data={populer} client:load/>  
+    <section class="px-10">
+      <Content3 data={populer} title="Hot News" client:load>
     </section>
     <section class="px-10 pt-[200px]">
-      <Content4 data={Trending} title="Trending"/>
-    </section> -->
+      <Content4 data={Trendings} title="Trending"/>
+    </section>
 </Layouts>
 
 
-<!-- <script>
-  const getCookies = () =>
-  document.cookie.split(";")
-    .map(str => str.trim().split(/=(.+)/))
-    .reduce((acc, curr) => {
-        acc[curr[0]] = curr[1];
-        return acc;
-    }, {})
-
-const userAcceptsCookies = !!getCookies()['token']
-console.log(userAcceptsCookies)
-</script> -->
 
 

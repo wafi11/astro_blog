@@ -3,8 +3,8 @@ import "../styles/global.css";
 import { motion } from "framer-motion";
 import { IoSearch } from "react-icons/io5";
 import { FaBars, FaTimes } from "react-icons/fa";
-import Search from "./utils/Search";
-import { Category } from "./banner/BannerTrending";
+import { Category } from "../banner/BannerTrending";
+import Search from "./Search";
 
 const data = [
   { nama: "Home", link: "/" },
@@ -19,6 +19,7 @@ const data = [
       { nama: Category.world },
     ],
   },
+  { nama: "Explore", link: "/explore" },
   { nama: "Trending", link: "/trending" },
   { nama: "Popular", link: "/popular" },
 ];

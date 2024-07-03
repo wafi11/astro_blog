@@ -20,16 +20,6 @@ export async function POST(context: APIContext): Promise<Response> {
         status: 400
     });
 }
-	// if (
-	// 	typeof email !== "string" ||
-	// 	email.length < 3 ||
-	// 	email.length > 100 ||
-	// 	!/^[a-z0-9_-]+$/.test(email)
-	// ) {
-	// 	return new Response("Invalid email", {
-	// 		status: 400
-	// 	});
-	// }
 	const password = formData.get("password");
 	if (typeof password !== "string" || password.length < 6 || password.length > 255) {
 		return new Response("Invalid password", {
@@ -48,7 +38,7 @@ export async function POST(context: APIContext): Promise<Response> {
 		});
 	}
 
-  const token = jwt.sign({ userId: user.id }, jwtSecret, { expiresIn: '1h' });
+  const token = jwt.sign({ userId: user.id }, jwtSecret, { expiresIn: '24h' });
 
   const cookie = `token=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${60 * 60};`;
   const headers = {

@@ -38,6 +38,6 @@ export const getImageForArticle = (category: string, index: number): string => {
         ]
     };
     const categoryImages = images[category] || [];
-    return categoryImages[index % categoryImages.length] || 'default_image_url';
+    return categoryImages[index % categoryImages.length] || 'sports';
 };
 ---

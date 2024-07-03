@@ -1,9 +1,8 @@
 ---
-import prisma from '../../lib/db';
+import prisma from '../lib/db';
 import jwt, { type JwtPayload } from 'jsonwebtoken';
 import Cookies from 'js-cookie';
 
-export const prerender = true
  
 export async function getUserFromToken(token : string) {
   try {
@@ -33,9 +32,8 @@ export async function getUserFromToken(token : string) {
         id: userId,
       },
       include: {
-        accounts: true,
-        sessions: true,
         likes: true,
+        comments : true,
       },
     });
 
@@ -50,37 +48,29 @@ export async function getUserFromToken(token : string) {
   }
 }
 
-let idCounter = 1;
 
-function addUniqueIds(articles) {
-    return articles.map(article => ({
-        ...article,
-        id: idCounter++
-    }));
-}
-
-export async function GetDataTrending (){
-    const api_key = import.meta.env.API_KEYS
-    try {
-        const data = await fetch(`https://api.currentsapi.services/v1/latest-news?apiKey=${api_key}`)
-        const response = await data.json()
+// export async function GetDataTrending (){
+//     const api_key = import.meta.env.API_KEYS
+//     try {
+//         const data = await fetch(`https://api.currentsapi.services/v1/latest-news?apiKey=${api_key}`)
+//         const response = await data.json()
        
-        return response
-    }catch {
-        throw new Error('Internal Server Error')
-    }
-}
-export async function GetDataByCountry (){
-    const api_key = import.meta.env.API_KEY
-    try {
-        const data = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${api_key}`)
-        const response = await data.json()
-        return response
-    }catch(e) {
-      console.log(e)
-        throw new Error(e)
-    }
-}
+//         return response
+//     }catch {
+//         throw new Error('Internal Server Error')
+//     }
+// }
+// export async function GetDataByCountry (){
+//     const api_key = import.meta.env.API_KEY
+//     try {
+//         const data = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${api_key}`)
+//         const response = await data.json()
+//         return response
+//     }catch(e) {
+//       console.log(e)
+//         throw new Error(e)
+//     }
+// }
 
 // export async function getByCategory() {
 //     const api_key = import.meta.env.API_KEY
@@ -109,4 +99,8 @@ export async function GetDataByCountry (){
 // }
 
 
+
 ---
+
+
+

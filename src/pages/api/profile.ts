@@ -1,62 +1,52 @@
-import { lucia } from "../../lib/auth";
-import { PrismaClient } from "@prisma/client";
-import jwt from "jsonwebtoken";
-import type { APIContext } from "astro";
+import jwt from 'jsonwebtoken';
+import prisma from '../../lib/db';
 
-const prisma = new PrismaClient();
+import type { APIContext } from 'astro';
+const jwtSecret = import.meta.env.AUTH_SECRET; // Pastikan Anda sudah mengatur secret key JWT di environment Anda
 
-export async function GET({ cookies }: APIContext): Promise<Response> {
-    try {
-        // Get the token from cookies
-        const token = cookies.get("token").value; // Ensure this matches your session cookie name
+export async function GET(context: APIContext): Promise<Response> {
+  // Mengambil token dari cookie
+  const tokenCookie = context.request.headers.get('Cookie');
+  if (!tokenCookie) {
+    return new Response('Unauthorized', { status: 401 });
+  }
 
-        if (!token) {
-            return new Response("Unauthorized: No token found", { status: 401 });
-        }
+  const token = tokenCookie.split(';').find(cookie => cookie.trim().startsWith('token='));
+  if (!token) {
+    return new Response('Unauthorized', { status: 401 });
+  }
 
-        // Get JWT key from environment variables
-        const jwtKey = import.meta.env.AUTH_SECRET;
+  const authToken = token.split('=')[1];
 
-        if (!jwtKey) {
-            return new Response("Internal Server Error: JWT key not found", { status: 500 });
-        }
+  // Verifikasi dan dekode token
+  let decodedToken;
+  try {
+    decodedToken = jwt.verify(authToken, jwtSecret);
+  } catch (error) {
+    return new Response('Unauthorized', { status: 401 });
+  }
 
-        // Verify the token
-        const decoded = jwt.verify(token, jwtKey);
-        if (typeof decoded === 'string') {
-            throw new Error('Invalid token payload');
-        }
+  // Dapatkan userId dari token yang terdekripsi
+  const userId = (decodedToken as any).userId;
 
-        // Get the userId from the decoded token
-        const userId = (decoded as jwt.JwtPayload).userId as string;
-        if (!userId) {
-            return new Response("Unauthorized: User ID not found in token", { status: 401 });
-        }
+  // Ambil profil pengguna dari database (misalnya menggunakan Prisma)
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
 
-        // Fetch the user from the database
-        const user = await prisma.user.findUnique({
-            where: {
-                id: userId,
-            },
-            include: {
-                accounts: true,
-                sessions: true,
-                likes: true,
-            },
-        });
+  if (!user) {
+    return new Response('User not found', { status: 404 });
+  }
 
-        if (!user) {
-            return new Response("Not Found: User not found", { status: 404 });
-        }
-
-        return new Response(JSON.stringify(user), {
-            status: 200,
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-    } catch (error) {
-        console.error('Error getting user from token:', error);
-        return new Response("Internal Server Error", { status: 500 });
-    }
+  // Mengembalikan data pengguna sebagai respons
+  return new Response(JSON.stringify(
+    user,
+  ), {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    status: 200,
+  });
 }

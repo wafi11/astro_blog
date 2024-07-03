@@ -55,9 +55,9 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="relative h-[500px]">
+    <div className="relative ">
       <div className="h-[500px] sticky bottom-0">
-        <div className="px-8 py-12 bg-gray-900 h-[500px] w-full flex flex-col justify-between">
+        <div className="px-8 pt-12 bg-gray-900 w-full flex flex-col justify-between">
           <div className="grid grid-cols-5 gap-10 px-10">
             <div className="flex gap-10 col-span-3">
               {data.slice(0, 2).map((item, idx) => (

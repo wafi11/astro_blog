@@ -1,11 +1,10 @@
 ---
 import type { GetStaticPaths } from "astro";
-import Footer from "../components/Footer";
+import Footer from "../components/utils/Footer";
 import Headers from "../components/header"
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
-import { GetDataTrending } from "../pages/actions/get.astro";
+const { title, description, createdAt, updatedDate, image } = Astro.props;
 import type { Data } from "../components/types";
-import BaseHead from "../components/BaseHead.astro";
+import BaseHead from "../components/utils/BaseHead.astro";
 ---
 <!DOCTYPE html>
 <html lang="en">

@@ -1,0 +1,23 @@
+---
+import { Image } from "astro:assets";
+import { getUserFromToken } from "../actions/get";
+import Layouts from "../layouts/Layouts.astro";
+import ProfileContent from "../components/content/Profile";
+const token = Astro.cookies.get('token').value
+const data : any  = await getUserFromToken(token)
+console.log(data)
+
+
+---
+
+
+<Layouts title="Profile"  >
+  <ProfileContent data={data} client:load/>
+</Layouts>
+
+
+
+
+
+
+

@@ -1,10 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import type { Data } from './types'
+import type { Data } from '../types';
 
 const BannerPopular = ({ data }: Data) => {
-    const filteredArticles = data.articles.filter((item) => {
-        return item.author && item.content && item.description && item.publishedAt && item.title && item.url && item.urlToImage;
+    const filteredArticles = data.filter((item) => {
+        return item.author && item.description && item.createdAt && item.title && item.url && item.image;
     });
 
     return (
@@ -18,15 +18,15 @@ const BannerPopular = ({ data }: Data) => {
                 >
                     <h3 className='font-blog text-xl '>{filteredArticles[0].author}</h3>
                     <p className='font-bold text-3xl '>{filteredArticles[0].title}</p>
+                    <p className='font-blog text-xl '>{filteredArticles[0].description}</p>
                     <motion.img 
-                        src={filteredArticles[0].urlToImage} 
+                        src={filteredArticles[0].image} 
                         alt="/" 
                         className='w-full h-[400px] object-cover'
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5, duration: 0.5 }}
                     />
-                    <p className='font-bold text-2xl '>{filteredArticles[0].description}</p>
                 </motion.div>
                 <div className='grid gap-2 col-span-3 items-center'>
                     <motion.h1 
@@ -49,10 +49,10 @@ const BannerPopular = ({ data }: Data) => {
                                 <div className='grid gap-4 pt-2'>
                                     <h4 className='text-md font-blog'>{item.author}</h4>
                                     <h4 className='text-3xl font-bebas'>{item.title}</h4>
-                                    <h4 className='text-sm font-blog'>{item.description}</h4>
+                                    <h4 className='text-md font-blog'>{item.description}</h4>
                                 </div>
                                 <motion.img 
-                                    src={item.urlToImage} 
+                                    src={item.image} 
                                     alt="/" 
                                     className='w-[200px] h-[100px] pt-2'
                                     initial={{ opacity: 0 }}

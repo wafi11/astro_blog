@@ -2,15 +2,15 @@
 import { Image } from "astro:assets";
 import type { Data } from "../../components/types";
 import Layouts from "../../layouts/Layouts.astro";
-import Category from "../../components/category"
-import { getEverithing } from "../actions/post.astro";
+import Category from "../../components/utils/category"
+import { getEverything } from "../../actions/post.astro";
 
 const search = Astro.url.searchParams.get('query') || 'apple';
-const data = await getEverithing(search)
+const data = await getEverything(search)
 
-import Banner from '../../components/Banner'
-import Content4 from "../../components/Content4";
-import Content3 from "../../components/Content3";
+import Banner from '../../components/banner/Banner'
+import Content4 from "../../components/content/Content4";
+import Content3 from "../../components/content/Content3";
 ---
 
 

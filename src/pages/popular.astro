@@ -1,24 +1,21 @@
 ---
-import type { DataAstro } from "../components/types";
-import BannerPopular from '../components/BannerPopular'
+import BannerPopular from '../components/banner/BannerPopular'
 import Layouts from "../layouts/Layouts.astro";
 import '../styles/global.css'
-import { GetDataTrending } from "./actions/get.astro";
-import ContentMid from "../components/ContentMid";
-import Content3 from "../components/Content3";
-import Content4 from "../components/Content4";
-const data  = await GetDataTrending()
-const userCookie = !!Astro.cookies.get('token')
-console.log(userCookie)
+import ContentMid from "../components/content/ContentMid";
+import Content3 from "../components/content/Content3";
+import Content4 from "../components/content/Content4";
+import { Trending } from '../actions/get';
+const data  = await Trending()
 ---
 
 <Layouts title={'Popular Page '} data={data}>
-  <!-- <BannerPopular data={data} client:load/>
-    <ContentMid data={data}/>
+  <BannerPopular data={data} client:load/>
+    <ContentMid data={data} />
   <section class="px-10">
       <Content3 data={data} title="Popular" client:load/>
     </section>
   <section class="px-10 py-[50px]">
       <Content4 data={data} title="Popular"/>
-    </section> -->
+    </section>
 </Layout>
