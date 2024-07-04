@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Data } from '../types';
 
 const Content4 = ({ data,title }: Data) => {

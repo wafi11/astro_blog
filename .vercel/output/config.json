@@ -1,0 +1,134 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"src": "/path",
+			"headers": {
+				"Location": "/"
+			},
+			"status": 301
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^\\/_actions(?:\\/(.*?))?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/_image$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/collect\\/([^/]+?)\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/collections\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/comments\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/likes\\/comments\\/([^/]+?)\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/likes\\/reply\\/([^/]+?)\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/login\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/logout\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/post\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/profile\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/protected\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/register\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/reply\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/blog\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/category\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/formblog\\/edit\\/([^/]+?)\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/formblog\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/popular\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/profile\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/redirected\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/register\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/search\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/test\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/trending\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/users\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/path\\/?$",
+			"dest": "_render"
+		}
+	]
+}

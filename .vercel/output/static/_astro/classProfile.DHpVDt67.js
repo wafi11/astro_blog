@@ -1,0 +1,1 @@
+import{r}from"./index.B3PfHquH.js";const n=()=>{const[o,t]=r.useState(null),[a,s]=r.useState(null);return r.useEffect(()=>{(async()=>{try{const e=await fetch("/api/profile",{method:"GET"});if(!e.ok)throw new Error("Failed to fetch user profile");const l=await e.json();t(l),s(null)}catch(e){t(null),s(e.message)}})()},[]),{userProfile:o,error:a}};export{n as u};

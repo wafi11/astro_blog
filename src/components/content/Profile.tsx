@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import { useState } from 'react';
 
 interface Props {
   date: string;

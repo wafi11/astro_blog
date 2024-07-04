@@ -1,7 +1,6 @@
 ---
 import prisma from '../lib/db';
 import jwt, { type JwtPayload } from 'jsonwebtoken';
-import Cookies from 'js-cookie';
 
  
 export async function getUserFromToken(token : string) {
@@ -47,56 +46,6 @@ export async function getUserFromToken(token : string) {
     throw error; 
   }
 }
-
-
-// export async function GetDataTrending (){
-//     const api_key = import.meta.env.API_KEYS
-//     try {
-//         const data = await fetch(`https://api.currentsapi.services/v1/latest-news?apiKey=${api_key}`)
-//         const response = await data.json()
-       
-//         return response
-//     }catch {
-//         throw new Error('Internal Server Error')
-//     }
-// }
-// export async function GetDataByCountry (){
-//     const api_key = import.meta.env.API_KEY
-//     try {
-//         const data = await fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${api_key}`)
-//         const response = await data.json()
-//         return response
-//     }catch(e) {
-//       console.log(e)
-//         throw new Error(e)
-//     }
-// }
-
-// export async function getByCategory() {
-//     const api_key = import.meta.env.API_KEY
-//     try {
-//         const data = await fetch(`https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=${api_key}`)
-//         const response = await data.json()
-//         return response
-//     }catch {
-//         throw new Error('Internal Server Error')
-
-//     }
-// }
-
-
-
-// export async function getTrending() {
-//     const api_key = import.meta.env.API_KEY
-//     try {
-//         const data = await fetch(`https://newsapi.org/v2/everything?q=apple&from=2024-06-24&to=2024-06-24&sortBy=popularity&apiKey=${api_key}`)
-//         const response = await data.json()
-//         return response
-//     }catch {
-//         throw new Error('Internal Server Error')
-
-//     }
-// }
 
 
 

@@ -1,5 +1,3 @@
-import { Image } from "astro:assets";
-import React, { Fragment } from "react";
 import type { Data } from "../types";
 
 

@@ -1,5 +1,4 @@
 import { format } from 'date-fns';
-import React from 'react';
 import { motion } from 'framer-motion'; // Import motion from Framer Motion
 import type { Data } from '../types';
 
