@@ -1,6 +1,5 @@
-import { createBlog, createComment, createUser, deleteComment, updateBlog } from "./post";
+import { createBlog, createComment, deleteComment, updateBlog } from "./post";
 export const server = {
-  register: createUser,
   blog : createBlog,
   updateBlog,
   comment : createComment,

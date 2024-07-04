@@ -1,6 +1,9 @@
 ---
 import { Image } from "astro:assets";
+import prisma from "../lib/db";
 import Layouts from "../layouts/Layouts.astro";
+const datas = await prisma.user.findMany()
+console.log(datas)
 ---
 
 <Layouts title="Login Page">
@@ -112,8 +115,14 @@ import Layouts from "../layouts/Layouts.astro";
       }
 
       try {
-        const response = await actions.register.safe(formData);
-        console.log("Registration successful:", response);
+        const req = await fetch('/api/register',{
+          method : 'POST',
+          body : formData
+        }) 
+        if(!req?.ok){
+          console.error("Error during registration:");
+        }
+        console.log("Registration successful:");
       } catch (error) {
         console.error("Error during registration:", error);
       }

@@ -1,45 +1,6 @@
 import { defineAction, z } from "astro:actions";
 import prisma from "../lib/db";
-import bcrypt from "bcrypt";
-export const createUser = defineAction({
-  accept: "form",
-  input: z.object({
-    name: z.string().min(6).max(20),
-    email: z.string().email(),
-    password: z.string().min(8),
-    image: z.string(),
-  }),
-  handler: async ({ image, name, email, password }) => {
-    try {
-      const hashedPassword = await bcrypt.hash(password, 12);
-      if (
-        typeof email !== "string" ||
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-      ) {
-        return new Response("Invalid email", { status: 400 });
-      }
 
-      if (
-        typeof password !== "string" ||
-        password.length < 6 ||
-        password.length > 255
-      ) {
-        return new Response("Invalid password", { status: 400 });
-      }
-      const data = await prisma.user.create({
-        data: {
-          image,
-          name,
-          email,
-          hashedPassword,
-        },
-      });
-      return data;
-    } catch (e) {
-      throw new Error("Internal Server Erorr");
-    }
-  },
-});
 
 export const createComment = defineAction({
   accept: "form",

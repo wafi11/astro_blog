@@ -14,14 +14,8 @@ export default defineConfig({
   }), mdx(), sitemap(),actions()],
   output: 'server',
   adapter: vercel(),
-  devToolbar : {
-    enabled : true
-  },
   experimental: {
     actions: true
-  },
-  redirects : {
-    path : '/'
   },
 });
 

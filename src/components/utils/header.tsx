@@ -8,7 +8,7 @@ import Search from "./Search";
 import useUserProfile from "../../layouts/classProfile";
 
 const data = [
-  { nama: "Home", link: "/" },
+  { nama: "Home", link: "/home" },
   {
     nama: "Category",
     link: "/category",
@@ -172,7 +172,7 @@ const Headers = () => {
             />
         </button>
           ) : (
-              <a href="/users" className="rounded-md px-4 py-2 border-[3px] border-black hover:bg-black hover:text-white w-fit text-xl  font-bebas items-center">Login</a>
+              <a href="/" className="rounded-md px-4 py-2 border-[3px] border-black hover:bg-black hover:text-white w-fit text-xl  font-bebas items-center">Login</a>
           )
         }
         {showing && (
@@ -181,9 +181,6 @@ const Headers = () => {
               <a href="/profile" className="hover:bg-gray-200 hover:border-gray-200 border-2 bg-gray-300 border-gray-200 rounded-md px-1">
                 User Profile
               </a>
-              <p className="hover:bg-gray-200 hover:border-gray-200 border-2 bg-gray-300 border-gray-200 rounded-md px-1">
-                Settings
-              </p>
               <button onClick={handleLogout} className="hover:bg-gray-200 hover:border-gray-200 border-2 bg-gray-300 border-gray-200 rounded-md px-1">
                 Logout
               </button>

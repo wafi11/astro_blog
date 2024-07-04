@@ -30,7 +30,7 @@ const verifyAuth = async (token) => {
 export const onRequest = defineMiddleware(async (context, next) => {
   console.log("Request URL:", context.url.pathname); 
   
-  if (PUBLIC_ROUTES.some(route => context.url.pathname.startsWith(route))) {
+  if (PUBLIC_ROUTES.some(route => context.url.pathname.endsWith(route))) {
     return next();
   }
 

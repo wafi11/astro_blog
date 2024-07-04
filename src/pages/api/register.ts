@@ -8,12 +8,13 @@ const userSchema = z.object({
   name: z.string().min(3).max(20),
   email: z.string().email(),
   password: z.string().min(4),
+  image : z.string()
 });
 
 // A function to sanitize inputs, if necessary
 const sanitizeInput = (input: string | null | undefined) => {
   if (typeof input !== 'string') {
-    return ''; // Or handle it as per your application's logic
+    return ''; 
   }
   return input.replace(/[^\w\s@.-]/g, '');
 };
@@ -21,7 +22,6 @@ const sanitizeInput = (input: string | null | undefined) => {
 export async function POST(context: APIContext): Promise<Response> {
   try {
     const contentType = context.request.headers.get("content-type");
-    console.log("Content-Type:", contentType); // Debugging line
    
     if (!contentType || (!contentType.includes("multipart/form-data") && !contentType.includes("application/x-www-form-urlencoded"))) {
       return new Response("Unsupported content type", { status: 400 });
@@ -34,7 +34,7 @@ export async function POST(context: APIContext): Promise<Response> {
       name: sanitizeInput(formData.get("name") as string),
       email: sanitizeInput(formData.get("email") as string),
       password: sanitizeInput(formData.get("password") as string),
-      // image: sanitizeInput(formData.get("image") as string)
+      image: formData.get("image") as string
     };
 
     const result = userSchema.safeParse(body);
@@ -42,7 +42,7 @@ export async function POST(context: APIContext): Promise<Response> {
       return new Response(JSON.stringify({ error: "Invalid request body", details: result.error.errors }), { status: 400 });
     }
 
-    const { email, name, password } = result.data;
+    const { email, name, password ,image} = result.data;
 
 
 
@@ -52,7 +52,7 @@ export async function POST(context: APIContext): Promise<Response> {
       data: {
         email,
         name,
-        // image,
+        image,
         hashedPassword
       }
     });
