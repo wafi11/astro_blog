@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Data } from './types';
+import type { Data } from '../types';
 
 const Content4 = ({ data,title }: Data) => {
     const filteredArticles = data.filter((item) => (
