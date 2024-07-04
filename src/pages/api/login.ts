@@ -1,5 +1,3 @@
-import { lucia } from "../../lib/auth";
-import { verify } from "@node-rs/argon2";
 import prisma from "../../lib/db"
 import jwt from 'jsonwebtoken';
 
@@ -40,17 +38,14 @@ export async function POST(context: APIContext): Promise<Response> {
 
   const token = jwt.sign({ userId: user.id }, jwtSecret, { expiresIn: '24h' });
 
-  const cookie = `token=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${60 * 60};`;
+  const cookie = `token=${token}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${60 * 60}`;
   const headers = {
     'Content-Type': 'application/json',
     'Set-Cookie': cookie,
   };
 
-  // Return response with token and redirect URL
   return new Response(JSON.stringify({
     message: "Authentication successful",
-    token,
-    redirect: "/" 
   }), {
     headers,
     status: 200

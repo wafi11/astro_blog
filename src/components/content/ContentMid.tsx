@@ -1,7 +1,6 @@
 import { Image } from "astro:assets";
 import React, { Fragment } from "react";
 import type { Data } from "../types";
-import ButtonCollection from "../utils/ButtonCollection";
 
 
 
@@ -25,7 +24,6 @@ const ContentMid = ({ data }: Data) => {
             Read more
           </a>
           <div className="flex gap-4">
-            <ButtonCollection blogId={item.id} />
           </div>
         </div>
       ))}

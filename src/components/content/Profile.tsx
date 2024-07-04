@@ -42,6 +42,9 @@ const FormatDate = ({ date }: Props) => {
 };
 
 const Profile = ({ data }: ProfileProps) => {
+    if(!data){
+        return null
+    }
   const [activeTab, setActiveTab] = useState<'comments' | 'collections'>('comments');
 
   const showComments = () => setActiveTab('comments');

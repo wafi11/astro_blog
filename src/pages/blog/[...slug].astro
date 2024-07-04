@@ -3,9 +3,9 @@
 import type { GetStaticPaths } from "astro";
 import {BlogsData,BlogsDataById, getCommentByBlogId} from "../../actions/get"
 import Layouts from "../../layouts/Layouts.astro";
-import FormatDate from '../../components/FormatDate.astro'
+import FormatDate from '../../components/utils/FormatDate.astro'
 import { Image } from "astro:assets";
-import Comment from "../../components/Comment";
+import Comment from "../../components/utils/Comment";
 export const getStaticPaths = (async() => {
     const posts = await BlogsData();
 	return posts.map((post) => ({
@@ -17,7 +17,7 @@ export const prerender = true
 const allPost = await BlogsData()
 const {slug} = Astro.params
 const posts = await BlogsDataById(slug)
-const comments = await getCommentByBlogId(posts[0].id)
+const comments : any = await getCommentByBlogId(posts[0].id)
 const filterCategory = allPost.filter((item) => (
     item.category.some((category) => posts.map((items) => items.category.includes(category)))
 ))
@@ -40,6 +40,7 @@ const filterCategory = allPost.filter((item) => (
                 }
                 </div>
                 <Image src={post.image as string} alt="/" width={1000} height={1000} class="h-[400px] flex justify-end w-full  object-cover"/>
+                <a href={`/formblog/edit/${post.id}`}>clikc</a>
                 </div>
            ))
         }

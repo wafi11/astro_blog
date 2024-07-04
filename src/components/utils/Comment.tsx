@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { format } from "date-fns";
-import useUserProfile from "../layouts/classProfile";
-import{ Buttonlike,ButtonlikeReply} from "./utils/Buttonlike";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReply } from "@fortawesome/free-solid-svg-icons";
-import ButtonDelete from "./utils/ButtonsDelete";
+import useUserProfile from "../../layouts/classProfile";
+import { Buttonlike, ButtonlikeReply } from "./Buttonlike";
+import ButtonDelete from "./ButtonsDelete";
 
 type UserType = {
   id: string;

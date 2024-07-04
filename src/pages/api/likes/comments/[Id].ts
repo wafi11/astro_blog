@@ -3,7 +3,6 @@ import type { APIRoute } from "astro";
 export const GET: APIRoute = async ({ request,params }) => {
     try {
         const {Id}  = params
-
       const datas = await prisma.comments.findUnique({
         where : {
             id : Id

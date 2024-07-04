@@ -17,11 +17,9 @@ const useUserProfile =<T extends UserProfile> () => {
                 const userData = await response.json();
                 setUserProfile(userData);
                 setError(null);
-                console.log('User Profile:', userData);
             } catch (error) {
                 setUserProfile(null);
                 setError(error.message);
-                console.error('Error fetching user profile:', error.message);
             }
         };
 

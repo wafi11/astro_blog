@@ -8,6 +8,7 @@ import vercel from '@astrojs/vercel/serverless';
 import db from "@astrojs/db";
 import actions from "astro-actions"
 
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react({
@@ -17,6 +18,11 @@ export default defineConfig({
   adapter: vercel(),
   experimental: {
     actions: true
-  }
+  },
+  redirects : {
+    path : '/'
+  },
 });
+
+
 

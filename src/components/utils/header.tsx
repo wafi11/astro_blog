@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "../styles/global.css";
+import "../../styles/global.css";
 import { motion } from "framer-motion";
 import { IoSearch } from "react-icons/io5";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Category } from "../banner/BannerTrending";
 import Search from "./Search";
+import useUserProfile from "../../layouts/classProfile";
 
 const data = [
   { nama: "Home", link: "/" },
@@ -24,12 +25,27 @@ const data = [
   { nama: "Popular", link: "/popular" },
 ];
 
+const handleLogout = async() => {
+  try {
+    const res =  await fetch("/api/logout",{
+      method : 'POST'
+    })
+    if(!res.ok){
+      throw new Error('Internal Serser Erorr')
+    }
+    alert("Berhasil")
+  }catch {
+    console.log("Internal Server Errorr")
+  }
+}
+
 const Headers = () => {
   const [currentPath, setCurrentPath] = useState("");
   const [show, setShow] = useState(false);
   const [mb, setMb] = useState(false);
   const [showing, setShowing] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const {userProfile,error} = useUserProfile()
 
   const handleClick = () => {
     setShowing((prev) => !prev);
@@ -142,16 +158,23 @@ const Headers = () => {
         <div className="lg:block hidden">
         <Search />
         </div>
-        <button
-          className="rounded-full w-10 h-10 ring-2 ring-gray-200 shadow-xl"
-          onClick={handleClick}
-        >
+        {
+          userProfile ? (
+
+            <button
+            className="rounded-full w-10 h-10 ring-2 ring-gray-200 shadow-xl"
+            onClick={handleClick}
+            >
           <img
             src={'/src/assets/placeholder.jpg'}
             alt="Profile"
             className="w-full h-full object-cover rounded-full"
-          />
+            />
         </button>
+          ) : (
+              <a href="/users" className="rounded-md px-4 py-2 border-[3px] border-black hover:bg-black hover:text-white w-fit text-xl  font-bebas items-center">Login</a>
+          )
+        }
         {showing && (
           <div className="absolute top-16 w-40 bg-gray-400 shadow-md rounded-md z-50 right-0">
             <div className="p-4 grid gap-4 font-bebas">
@@ -161,9 +184,9 @@ const Headers = () => {
               <p className="hover:bg-gray-200 hover:border-gray-200 border-2 bg-gray-300 border-gray-200 rounded-md px-1">
                 Settings
               </p>
-              <p className="hover:bg-gray-200 hover:border-gray-200 border-2 bg-gray-300 border-gray-200 rounded-md px-1">
+              <button onClick={handleLogout} className="hover:bg-gray-200 hover:border-gray-200 border-2 bg-gray-300 border-gray-200 rounded-md px-1">
                 Logout
-              </p>
+              </button>
             </div>
           </div>
         )}

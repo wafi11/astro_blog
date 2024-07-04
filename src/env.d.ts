@@ -5,5 +5,7 @@ declare namespace App {
     interface Locals {
       email: string;
       name : string
+      welcomeTitle : () => void
     }
   }
+

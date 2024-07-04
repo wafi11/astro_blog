@@ -180,10 +180,11 @@ export async function getCommentByBlogId(blogId : string) {
 }
 
 export async function getUserFromToken(token : string) {
+
   try {
     const jwtKey = import.meta.env.AUTH_SECRET;
     if (!token) {
-      throw new Error('Token Not Found');
+      return null
     }
     if (!jwtKey) {
       throw new Error('JWT key not found in environment variables');

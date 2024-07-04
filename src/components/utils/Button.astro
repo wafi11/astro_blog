@@ -20,14 +20,11 @@ import { faBookmark } from "@fortawesome/free-solid-svg-icons";
     document.addEventListener("DOMContentLoaded", () => {
         const tgt = document.querySelector("#tgt");
         let isBookmarked = JSON.parse(localStorage.getItem('isBookmarked') || 'false');
-        
-        // Set initial state based on localStorage
         if (isBookmarked) {
             tgt.classList.add('text-red-500');
             tgt.classList.remove('text-black');
             tgt.innerHTML = 'Unbookmark <i class="fa fa-bookmark"></i>';
         }
-
         tgt.addEventListener("click", () => {
             isBookmarked = !isBookmarked;
             localStorage.setItem('isBookmarked', JSON.stringify(isBookmarked));
