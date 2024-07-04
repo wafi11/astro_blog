@@ -5,7 +5,6 @@ import { getEverything } from "../../actions/post.astro";
 
 const search = Astro.url.searchParams.get('query') || 'apple';
 const data = await getEverything(search)
-
 import Banner from '../../components/banner/Banner'
 import Content4 from "../../components/content/Content4";
 import Content3 from "../../components/content/Content3";

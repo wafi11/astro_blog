@@ -5,7 +5,6 @@ import type { APIContext } from 'astro';
 const jwtSecret = import.meta.env.AUTH_SECRET; // Pastikan Anda sudah mengatur secret key JWT di environment Anda
 
 export async function GET(context: APIContext): Promise<Response> {
-  // Mengambil token dari cookie
   const tokenCookie = context.request.headers.get('Cookie');
   if (!tokenCookie) {
     return new Response('Unauthorized', { status: 401 });

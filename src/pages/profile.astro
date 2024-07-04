@@ -6,9 +6,7 @@ import ProfileContent from "../components/content/Profile";
 const token = Astro.cookies.get('token')?.value
 const data : any  = await getUserFromToken(token)
 if (!token || !data) {
-  // Redirect ke halaman beranda
-  Astro.redirect('/'); // Ini akan mengarahkan pengguna ke halaman beranda
-}
+  Astro.redirect('/'); }
 
 const datas = Astro.locals.name
 ---

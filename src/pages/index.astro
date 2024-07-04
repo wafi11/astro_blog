@@ -26,13 +26,12 @@ import Layouts from "../layouts/Layouts.astro";
 
 
 <script>
-  
     document
       .getElementById("Form")!
       .addEventListener("submit", async function (event) {
         event.preventDefault(); 
   
-        const form = event.target as HTMLFormElement; // Cast event.target to HTMLFormElement
+        const form = event.target as HTMLFormElement;
         const formData = new FormData(form);
         console.log(formData)
         const formEntries = Object.fromEntries(formData.entries());

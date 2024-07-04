@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import prisma from '../../lib/db'; // Adjust the path if necessary
+import prisma from '../../lib/db';
 
 export const POST: APIRoute = async ({ request }) => {
     if (request.headers.get("Content-Type") === "application/json") {

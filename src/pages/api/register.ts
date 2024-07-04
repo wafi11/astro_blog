@@ -1,9 +1,8 @@
 import type { APIContext } from "astro";
-import prisma from "../../lib/db"; // Adjust the path if necessary
+import prisma from "../../lib/db";
 import { z } from "zod";
 import bcrypt from "bcrypt";
 
-// Define a schema for user inputs
 const userSchema = z.object({
   name: z.string().min(3).max(20),
   email: z.string().email(),
@@ -11,7 +10,6 @@ const userSchema = z.object({
   image : z.string()
 });
 
-// A function to sanitize inputs, if necessary
 const sanitizeInput = (input: string | null | undefined) => {
   if (typeof input !== 'string') {
     return ''; 

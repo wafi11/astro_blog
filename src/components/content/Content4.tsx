@@ -12,10 +12,10 @@ const Content4 = ({ data,title }: Data) => {
                 <h1 className='text-black tracking-wider px-4'>TOP STORIES IN THE LAST 48 HOURS</h1>
             </div>
 
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-black bebas md:max-h-[400px]'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4  bebas md:max-h-[400px]'>
                 {filteredArticles.slice(0,4).map((item, idx) => (
-                    <div key={idx} className='gap-5 flex flex-col'>
-                        <img src={item.image} alt="/" className='w-full h-[200px] object-cover' />
+                    <div key={idx} className='gap-5 flex flex-col border-2 p-4 rounded-[24px] border-gray-200 shadow-xl '>
+                        <img src={item.image} alt="/" className='w-full h-[200px]  object-cover rounded-[16px]' />
                         <h1 className=''>{item.author}</h1>
                         <div className=' items-center gap-4 grid'>
                                 <h2 className='text-xl font-semibold '>{item.title}</h2>

@@ -18,7 +18,7 @@ const ContentMid = ({ data }: Data) => {
           <h2 className="text-xl font-bold bebas ">{item.title}</h2>
           <p className="text-gray-500">{item.description}</p>
           <p className="text-sm text-gray-400">By {item.author} on {new Date(item.createdAt).toLocaleDateString()}</p>
-          <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+          <a href={`/blog/${item.id}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
             Read more
           </a>
           <div className="flex gap-4">
@@ -34,7 +34,7 @@ const ContentMid = ({ data }: Data) => {
                     <div className="flex-col flex">
                     <h2 className="text-xl font-medium">{item.title}</h2>
                     <p className="text-sm text-gray-400 tracking-wider">By {item.author} | {new Date(item.createdAt).toLocaleDateString()}</p>
-                    <a href={item.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                    <a href={`/blog/${item.id}`} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
                     Read more
                     </a>
                     </div>

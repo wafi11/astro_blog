@@ -3,10 +3,9 @@ import jwt from 'jsonwebtoken';
 
 
 import type { APIContext } from "astro";
-const jwtSecret = import.meta.env.AUTH_SECRET; // Ganti dengan secret key JWT Anda
+const jwtSecret = import.meta.env.AUTH_SECRET;      
 export async function POST(context: APIContext): Promise<Response> {
   const contentType = context.request.headers.get("content-type");
-    
     if (!contentType || (!contentType.includes("multipart/form-data") && !contentType.includes("application/x-www-form-urlencoded"))) {
         return new Response("Unsupported content type", { status: 400 });
     }

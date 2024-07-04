@@ -11,9 +11,7 @@ import type { Propsing } from "../components/types";
 
 
 const search = Astro.url.searchParams.get('cat') || 'entertainment';
-
 const datas = await getEverything(search);
-console.log(datas)
 
 ---
 

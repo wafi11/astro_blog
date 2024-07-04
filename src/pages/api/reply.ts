@@ -11,8 +11,6 @@ export const POST: APIRoute = async ({ request }) => {
         throw new Error("Missing required fields");
       }
 
-      console.log(commentId)
-
       const parentComment = await prisma.comments.findUnique({
         where: { id: commentId },
       });

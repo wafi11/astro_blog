@@ -1,2 +1,2 @@
 export const TOKEN = "token";
-export const PUBLIC_ROUTES = ['/',"/redirected", "/api/login", "/api/logout","/api/register","/users","/register"];
+export const PUBLIC_ROUTES = ['/home','/trending','/popular','/category','/search',"/redirected", "/api/login", "/api/logout","/api/register"];

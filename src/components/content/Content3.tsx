@@ -13,7 +13,7 @@ const Content3 = ({ data, title }: Data) => {
                     <motion.img 
                         src={data[0].image} 
                         alt='Article main' 
-                        className='w-full h-400 object-cover'
+                        className='w-full h-[400px] object-cover'
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
